@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Index Title</title>
+    </h:head>
+     
+    <h:body>
+        <h:form>
+        <h:outputText value="Department"/>
+        <h:inputText  value="#{usercontroller.man.department}"/><br/>
+          Courses:
+         <h:selectOneMenu valueChangeListener="#{usercontroller.valueChange}" onchange="submit()">            
+         <f:selectItems value="#{usercontroller.course}"/>           
+         </h:selectOneMenu> <br/>
+        
+        Subject:  
+         <h:selectOneMenu value="#{usercontroller.name}">            
+         <f:selectItems value="#{usercontroller.subject}"/> 
+           
+        </h:selectOneMenu><br/>
+       
+             <h:outputText value="Name"/>
+             <h:inputText  value="#{usercontroller.man.name}"/><br/>
+             <h:outputText value="Phone Number"/>
+             <h:inputText  value="#{usercontroller.man.phone}"/><br/>
+             <h:outputText value="Address"/>
+             <h:inputText  value="#{usercontroller.man.address}"/><br/>
+        
+             <br/><br/>
+             <h:commandButton value="Add" action="#{usercontroller.insert()}"/><br/><br/><br/><br/><br/>
+             <h:dataTable value="#{usercontroller.l}" var="emp" border="1">
+                <h:column>
+                <f:facet name="header">Department</f:facet>
+                <h:outputText value="#{emp.department}"/>
+                </h:column>
+                
+                <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{emp.name}"/>
+                </h:column>
+                
+                <h:column>
+                <f:facet name="header">Phone Number</f:facet>
+                <h:outputText value="#{emp.phone}"/>
+                </h:column>
+                
+                <h:column>
+                <f:facet name="header">Address</f:facet>
+                <h:outputText value="#{emp.address}"/>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:commandLink value="[Edit]" action="#{usercontroller.setMan(emp)}"/>
+                    <h:commandLink value="[Delete]" action="#{usercontroller.setMan(emp)}"/>
+                </h:column>
+                 <br/><br/><br/>
+            </h:dataTable>
+           <br/>
+         
+           <h:commandButton value="Update" action="#{usercontroller.update()}"/>
+          
+            <h:commandButton value="Delete" action="#{usercontroller.delete()}"/>
+            <br/>
+      </h:form>
+    </h:body>
+</html>
